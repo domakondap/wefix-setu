@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+client/dist/
+
+# SQLite database + WAL files
+server/data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Env files (never commit real secrets)
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

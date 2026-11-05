@@ -1,0 +1,37 @@
+# WeFix Setu — local/production-like multi-container setup.
+# Usage:
+#   JWT_SECRET=$(openssl rand -hex 48) docker compose up --build
+# Then open http://localhost:8080
+services:
+  api:
+    build: ./server
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      # REQUIRED in production — compose will warn if unset.
+      JWT_SECRET: ${JWT_SECRET:?Set a strong JWT_SECRET, e.g. openssl rand -hex 48}
+      JWT_EXPIRES_IN: 7d
+      DATABASE_FILE: /data/wefix.sqlite
+      DEFAULT_HANDLING_FEE: 5
+      # The nginx frontend proxies same-origin /api, so CORS allows the web origin.
+      CLIENT_ORIGIN: http://localhost:8080
+    volumes:
+      - wefix_data:/data
+    expose:
+      - "4000"
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./client
+      args:
+        # Empty => frontend uses same-origin /api (proxied by nginx to the api service).
+        VITE_API_BASE: ""
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  wefix_data:

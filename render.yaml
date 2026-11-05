@@ -1,0 +1,28 @@
+# Render.com blueprint — single container (frontend + API) on the free tier.
+# Deploy: push this repo to GitHub, then in Render: New → Blueprint → pick the repo.
+# Gives a public https://<name>.onrender.com URL. No credit card required.
+services:
+  - type: web
+    name: wefix-setu
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SEED_ON_BOOT
+        value: 'true'
+      - key: JWT_SECRET
+        generateValue: true # Render generates a strong secret
+      # Render injects PORT automatically; the server reads it.
+      # --- Optional: real payments + persistent DB (add later in the dashboard) ---
+      # - key: DATABASE_URL          # a free Neon Postgres URL for persistence
+      #   sync: false
+      # - key: STRIPE_SECRET_KEY
+      #   sync: false
+      # - key: STRIPE_PUBLISHABLE_KEY
+      #   sync: false
+      # - key: STRIPE_WEBHOOK_SECRET
+      #   sync: false

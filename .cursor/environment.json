@@ -1,0 +1,4 @@
+{
+  "install": "set -euo pipefail\nif [ -f server/package-lock.json ] && [ -f client/package-lock.json ]; then\n  npm ci --prefix server\n  npm ci --prefix client\n  test -f server/.env || cp server/.env.example server/.env\n  test -f client/.env || cp client/.env.example client/.env\n  npm run seed --prefix server\nfi",
+  "start": "if [ -f scripts/cursor-start.sh ]; then bash scripts/cursor-start.sh; fi"
+}

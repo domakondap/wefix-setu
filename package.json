@@ -1,0 +1,14 @@
+{
+  "name": "wefix-setu",
+  "private": true,
+  "description": "WeFix Setu — village-to-city repair logistics",
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "seed": "npm run seed --prefix server",
+    "dev": "bash scripts/cursor-start.sh",
+    "start": "bash scripts/cursor-start.sh"
+  },
+  "engines": {
+    "node": ">=22.5"
+  }
+}

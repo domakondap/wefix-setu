@@ -1,0 +1,12 @@
+# Files not uploaded to Cloud Build.
+.git
+**/node_modules
+client/dist
+server/data
+**/*.sqlite
+**/*.sqlite-shm
+**/*.sqlite-wal
+**/*.log
+.env
+**/.env
+.claude

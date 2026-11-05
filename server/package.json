@@ -1,0 +1,28 @@
+{
+  "name": "wefix-setu-server",
+  "version": "1.0.0",
+  "description": "WeFix Setu — village-to-city repair logistics platform API",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "seed": "node src/seed.js",
+    "test:e2e": "node test/e2e.mjs"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "nanoid": "^5.0.9",
+    "pg": "^8.13.1",
+    "stripe": "^17.5.0"
+  }
+}
